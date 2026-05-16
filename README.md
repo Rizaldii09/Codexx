@@ -23,6 +23,7 @@ cp .env.example .env
 ```
 
 Isi `.env` minimal. CLI sekarang otomatis membaca file `.env` dari folder saat ini atau parent folder, jadi tidak perlu menjalankan `export` manual:
+Isi `.env` minimal:
 
 ```bash
 AI_PROVIDER=anthropic

@@ -42,6 +42,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> None:
     args = build_parser().parse_args()
     settings = Settings.from_env(args.env_file)
+    settings = Settings.from_env()
     agent = CryptoAgent(settings=settings, system_prompt=args.prompt) if getattr(args, "prompt", None) else CryptoAgent(settings=settings)
 
     if args.command == "chat":
