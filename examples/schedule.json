@@ -1,0 +1,12 @@
+{
+  "jobs": [
+    {
+      "name": "daily-crypto-radar",
+      "kind": "research",
+      "topic": "early crypto airdrop, NFT mint, dan narasi market terbaru",
+      "interval_seconds": 86400,
+      "telegram": true,
+      "email": false
+    }
+  ]
+}
