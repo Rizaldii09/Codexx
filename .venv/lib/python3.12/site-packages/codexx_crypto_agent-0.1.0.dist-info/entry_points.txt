@@ -1,0 +1,2 @@
+[console_scripts]
+codexx-agent = cryptox_agent.cli:main
