@@ -22,6 +22,7 @@ pip install -e .
 cp .env.example .env
 ```
 
+Isi `.env` minimal. CLI sekarang otomatis membaca file `.env` dari folder saat ini atau parent folder, jadi tidak perlu menjalankan `export` manual:
 Isi `.env` minimal:
 
 ```bash
@@ -44,6 +45,8 @@ SMTP_USER=you@example.com
 SMTP_PASSWORD=app-password
 REPORT_EMAIL_TO=target@example.com
 ```
+
+Kalau `.env` berada di lokasi lain, jalankan CLI dengan `--env-file /path/to/.env` sebelum subcommand, misalnya `codexx-agent --env-file /app/.env chat "Halo"`.
 
 Jalankan chat:
 
@@ -70,6 +73,38 @@ Jalankan scheduler:
 codexx-agent schedule --config examples/schedule.json
 ```
 
+
+## Troubleshooting `.env`
+
+Jika output masih `Mode lokal aktif`, penyebab paling umum adalah CLI belum membaca file `.env` atau `AI_PROVIDER` masih `local`. Cek cepat:
+
+```bash
+cat .env | sed -n '1,20p'
+codexx-agent --env-file .env chat "Halo, test provider"
+```
+
+Pastikan salah satu konfigurasi berikut aktif dan tidak dikomentari:
+
+```bash
+AI_PROVIDER=anthropic
+ANTHROPIC_API_KEY=sk-ant-...
+```
+
+atau:
+
+```bash
+AI_PROVIDER=deepseek
+DEEPSEEK_API_KEY=...
+```
+
+atau:
+
+```bash
+AI_PROVIDER=glm
+GLM_API_KEY=...
+```
+
+Environment variable dari shell tetap menang atas isi `.env`. Jadi kalau sebelumnya pernah menjalankan `export AI_PROVIDER=local`, hapus dulu dengan `unset AI_PROVIDER` atau ubah export tersebut.
 
 ## Provider model AI
 
